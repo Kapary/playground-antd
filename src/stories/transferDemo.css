@@ -1,0 +1,12 @@
+.transfer-labels-wrapper {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    align-items: flex-start;
+    gap: 50px;
+}
+
+.transfer-label {
+    flex-basis: 50%;
+    font-weight: 600;
+}
