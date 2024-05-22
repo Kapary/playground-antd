@@ -12,19 +12,23 @@ interface RecordType {
   chosen: boolean;
 }
 
-export const TransferDemo = () => {
+interface TransferDemoProps {
+  withPagination?: boolean;
+}
+
+export const TransferDemo = ({ withPagination }: TransferDemoProps) => {
   const [mockData, setMockData] = useState<RecordType[]>([]);
   const [targetKeys, setTargetKeys] = useState<string[]>([]);
 
   const getMock = () => {
     const tempTargetKeys = [];
     const tempMockData = [];
-    for (let i = 0; i < 20; i++) {
+    for (let i = 0; i < 30; i++) {
       const data = {
         key: i.toString(),
         title: `role${i + 1}`,
         description: `description of role${i + 1}`,
-        chosen: i % 2 === 0,
+        chosen: i % 5 === 0,
       };
       if (data.chosen) {
         tempTargetKeys.push(data.key);
@@ -93,6 +97,13 @@ export const TransferDemo = () => {
           itemsUnit: "Roles",
           searchPlaceholder: "Search Roles",
         }}
+        pagination={
+          withPagination
+            ? {
+                pageSize: 10,
+              }
+            : undefined
+        }
       />
     </Modal>
   );

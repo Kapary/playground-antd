@@ -1,13 +1,12 @@
-import { TransferDemo } from "./TransferDemo";
+import { Button } from "./Button";
 
 // More on how to set up stories at: https://storybook.js.org/docs/react/writing-stories/introduction
 export default {
-  title: "Example/TransferDemoStories",
-  component: TransferDemo,
+  title: "Example/Button",
+  component: Button,
   tags: ["autodocs"],
   argTypes: {
     backgroundColor: { control: "color" },
-    withPagination: { control: "withPagination" },
   },
 };
 
@@ -38,11 +37,3 @@ export default {
 //     label: 'Button',
 //   },
 // };
-
-export const TransferDemoStories = {};
-
-export const TransferDemoWithPagination = {
-  args: {
-    withPagination: true,
-  },
-};
