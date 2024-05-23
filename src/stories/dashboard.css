@@ -1,0 +1,12 @@
+.layout {
+    display: flex;
+    direction: column;
+    gap: 1rem;
+    padding: 1rem;
+}
+
+.button-wrapper {
+    display: flex;
+    width: 100%;
+    justify-content: end;
+}
