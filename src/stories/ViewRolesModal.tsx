@@ -8,11 +8,14 @@ import {
   Table,
   TableColumnProps,
   ModalProps,
+  Input,
 } from "antd";
 import "antd/dist/antd.css";
 import { TransferDirection } from "antd/lib/transfer";
 
 import "./transferDemo.css";
+
+const { Search } = Input;
 
 interface RecordType {
   key: string;
@@ -95,7 +98,11 @@ export const ViewRolesModal = ({
       <Typography.Title level={5} style={{ marginBottom: "1rem" }}>
         User roles
       </Typography.Title>
-
+      <Search
+        placeholder="Search for role - is this needed?"
+        style={{ marginBottom: "1rem" }}
+        size="large"
+      />
       <Table dataSource={mockData} columns={columnsSetup} />
     </Modal>
   );
