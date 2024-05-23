@@ -80,6 +80,8 @@ const columnsSetup: TableColumnProps<UserProps>[] = [
   {
     title: "Action",
     key: "action",
+    width: 140,
+    align: "right",
     render: (text, record) => (
       <Button type="default" onClick={() => {}}>
         Edit
@@ -135,6 +137,10 @@ const Dashboard = (props: Props) => {
     }
   }, [isTableLoading]);
 
+  useEffect(() => {
+    setIsTableLoading(true);
+  }, []);
+
   //   const searchUsers = () => {
   //     setIsTableLoading(true);
 
@@ -145,7 +151,7 @@ const Dashboard = (props: Props) => {
 
   return (
     <>
-      <Layout dir="vertical" className="layout">
+      <div dir="vertical" className="layout">
         <Typography.Title level={2}>Users</Typography.Title>
         <div className="button-wrapper">
           <Button
@@ -167,8 +173,12 @@ const Dashboard = (props: Props) => {
           pagination={{ pageSize: 25 }}
           columns={columnsSetup}
           loading={isTableLoading}
+          sticky
+          scroll={{ y: "70vh" }}
+          bordered
+          //   style={{ overflowY: "auto" }}
         />
-      </Layout>
+      </div>
     </>
   );
 };

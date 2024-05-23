@@ -1,8 +1,12 @@
 .layout {
     display: flex;
-    direction: column;
+    flex-direction: column;
     gap: 1rem;
     padding: 1rem;
+    max-height: 100vh;
+    overflow: hidden;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
 }
 
 .button-wrapper {
