@@ -14,3 +14,9 @@
     width: 100%;
     justify-content: end;
 }
+
+.multiple-buttons-wrapper {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: end;
+}

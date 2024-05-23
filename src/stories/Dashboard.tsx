@@ -11,6 +11,7 @@ import {
 
 import "./dashboard.css";
 import { useDebounce, useDebouncedEffect } from "../utils";
+import { ViewRolesModal } from "./ViewRolesModal";
 
 type Props = {};
 
@@ -62,38 +63,15 @@ interface UserProps {
   id: string;
 }
 
-const columnsSetup: TableColumnProps<UserProps>[] = [
-  {
-    title: "Name",
-    key: "lastName",
-    render: (text, record) => (
-      <span>
-        {record.firstName} {record.lastName}
-      </span>
-    ),
-  },
-  {
-    title: "Email",
-    dataIndex: "email",
-    key: "email",
-  },
-  {
-    title: "Action",
-    key: "action",
-    width: 140,
-    align: "right",
-    render: (text, record) => (
-      <Button type="default" onClick={() => {}}>
-        Edit
-      </Button>
-    ),
-  },
-];
+interface DashboardProps {
+  withViewAction?: boolean;
+}
 
-const Dashboard = (props: Props) => {
+const Dashboard = ({ withViewAction }: DashboardProps) => {
   const [isExportingUserAssginments, setIsExportingUserAssginments] =
     useState(false);
   const [isTableLoading, setIsTableLoading] = useState(false);
+  const [isViewRolesModalVisible, setIsViewRolesModalVisible] = useState(false);
 
   const [searchPhrase, setSearchPhrase] = useState<string | undefined>(
     undefined
@@ -114,6 +92,45 @@ const Dashboard = (props: Props) => {
       );
     });
   }, [mockedUsers, debouncedSearchPhrase]);
+
+  const columnsSetup: TableColumnProps<UserProps>[] = [
+    {
+      title: "Name",
+      key: "lastName",
+      render: (text, record) => (
+        <span>
+          {record.firstName} {record.lastName}
+        </span>
+      ),
+    },
+    {
+      title: "Email",
+      dataIndex: "email",
+      key: "email",
+    },
+    {
+      title: "Action",
+      key: "action",
+      width: withViewAction ? 200 : 140,
+      align: "right",
+      render: (text, record) => (
+        <div className="multiple-buttons-wrapper">
+          {withViewAction ? (
+            <Button
+              type="default"
+              onClick={() => setIsViewRolesModalVisible(true)}
+            >
+              View
+            </Button>
+          ) : (
+            <Button type="default" onClick={() => {}}>
+              Edit
+            </Button>
+          )}
+        </div>
+      ),
+    },
+  ];
 
   const handleExportUserAssignments = () => {
     setIsExportingUserAssginments(true);
@@ -179,6 +196,10 @@ const Dashboard = (props: Props) => {
           //   style={{ overflowY: "auto" }}
         />
       </div>
+      <ViewRolesModal
+        isVisible={isViewRolesModalVisible}
+        onCancel={() => setIsViewRolesModalVisible(false)}
+      />
     </>
   );
 };

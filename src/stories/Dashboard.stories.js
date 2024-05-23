@@ -41,6 +41,12 @@ export default {
 
 export const DashboardDemo = {};
 
+export const DashboardWithViewAction = {
+  args: {
+    withViewAction: true,
+  },
+};
+
 // export const TransferDemoWithPagination = {
 //   args: {
 //     withPagination: true,
